@@ -4,13 +4,14 @@
     padding: 0;
   }
   body {
-    font-family: sans-serif;
+    font-family: "IBM Plex Sans Condensed", sans-serif;
     line-height: 1.5;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
   header {
+    font-weight: 200;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,6 +33,8 @@
     text-decoration: none;
   }
   main {
+    font-weight: 400;
+    font-size: 18px;
     flex: 1;
     padding: 2rem;
   }
@@ -40,6 +43,16 @@
     padding: 1rem;
     background: #222;
     color: #aaa;
+  }
+
+  h1{
+    text-align: center;
+    font-size: 70px;
+    font-weight: 700;
+  }
+
+  h2{
+    font-weight: 600;
   }
   
   :root {
@@ -173,26 +186,67 @@
   }
   
   /* — Q&A Page */
-  .qa-page .qa-pair {
-    margin-bottom: 1.5rem;
+  /* Center the Q&A page content */
+  .qa-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;           /* space between the heading and each pair */
+    padding: 2rem 0;
   }
-  .qa-page h3 {
-    margin-bottom: 0.3rem;
+
+  /* Constrain each Q&A pair and center it */
+  .qa-pair {
+    width: 100%;
+    max-width: 600px;    /* or whatever width you prefer */
+    margin: 0 auto;      /* horizontal centering */
+  }
+
+  /* Optional: if you want the text itself left-aligned inside each box */
+  .qa-pair h3,
+  .qa-pair p {
+    text-align: left;
   }
   
   /* — Credits Page */
   .credits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.5rem;
-  }
-  .member-card img {
-    width: 100%;
-    border-radius: 4px;
-  }
-  .member-card p {
-    margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+/* — Member card styling */
+  .member-card {
+    background: #555;         /* gray background */
+    color: #fff;              /* white text */
+    padding: 1.5rem;
+    border-radius: 8px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+  }
+
+  /* ensure name is first, then img, then desc */
+  .member-card h3 {
+    order: 1;
+    margin: 0;
+  }
+
+  .member-card img {
+    order: 2;
+    width: 300px;             /* smaller avatar */
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10%;       /* round edges */
+  }
+
+  .member-card p {
+    order: 3;
+    line-height: 1.4;
+    margin: 0;
   }
   
   /* — Contact Page */
