@@ -1,0 +1,211 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: sans-serif;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #222;
+  }
+  header .logo {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  header nav a {
+    color: #fff;
+    text-decoration: none;
+  }
+  main {
+    flex: 1;
+    padding: 2rem;
+  }
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background: #222;
+    color: #aaa;
+  }
+  
+  :root {
+    /* set this once to the width you want for both video & carousel */
+    --media-width: 600px;
+  }
+
+  /* — Sign-up + Video */
+  .signup-trailer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  /* make the form a fixed width and center it in its own flexbox */
+  .signup-trailer .signup {
+    flex: 0 0 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* force the video container to your media-width */
+  .signup-trailer .trailer {
+    flex: 0 0 var(--media-width);
+  }
+  .signup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .signup input {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  .signup button {
+    padding: 0.6rem;
+    font-size: 1rem;
+  }
+  .trailer video {
+    width: 100%;
+    border: 2px solid #ccc;
+  }
+  
+  /* — Carousel + Description wrapper */
+  .carousel-description {
+    display: flex;
+    align-items: flex-start; /* or center */
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* — Carousel Section (buttons + viewport) */
+  .carousel-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex: 0 0 var(--media-width);       /* total width for carousel + buttons matched to video */
+  }
+  
+  /* Prev/Next Buttons */
+  .carousel-btn {
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: #fff;
+    font-size: 1.8rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Carousel viewport */
+  .carousel-container {
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  /* Scroll-snap track */
+  .carousel-track {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* One slide at a time */
+  .carousel-item {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+  }
+  .carousel-item img {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+  }
+
+  .carousel-track.no-anim {
+    scroll-behavior: auto;
+  }
+  
+  /* — Description Column */
+  .description {
+    flex: 1;
+  }
+  
+  /* — Download Button */
+  .download {
+    text-align: center;
+    margin-top: 2rem;        /* adds space above it */
+  }
+
+  .download .btn {
+    display: inline-block;
+    padding: 0.8rem 1.2rem;
+    background: #007acc;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  
+  /* — Q&A Page */
+  .qa-page .qa-pair {
+    margin-bottom: 1.5rem;
+  }
+  .qa-page h3 {
+    margin-bottom: 0.3rem;
+  }
+  
+  /* — Credits Page */
+  .credits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+  }
+  .member-card img {
+    width: 100%;
+    border-radius: 4px;
+  }
+  .member-card p {
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  
+  /* — Contact Page */
+  .contact-info {
+    text-align: center;
+  }
+  .social-buttons {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .social-buttons img {
+    width: 32px;
+    height: 32px;
+  }

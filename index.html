@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parallax Paradox</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="index.html">Parallax Paradox</a>
+      <nav>
+        <ul>
+          <li><a href="qa.html">Q&A</a></li>
+          <li><a href="credits.html">Credits</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- sign-up + trailer -->
+      <section class="signup-trailer">
+        <form class="signup">
+          <label for="email">Enter your email for updates:</label>
+          <input type="email" id="email" placeholder="you@example.com" />
+          <button type="submit">Subscribe</button>
+        </form>
+        <div class="trailer">
+          <video controls poster="poster.jpg">
+            <source src="images/placeholder-trailer.mp4" type="video/mp4" />
+            Your browser doesn’t support HTML5 video.
+          </video>
+        </div>
+      </section>
+
+      <!-- carousel + description -->
+      <section class="carousel-description">
+        <!-- carousel + buttons -->
+        <div class="carousel-section">
+          <button class="carousel-btn prev">‹</button>
+          <div class="carousel-container">
+            <div class="carousel-track">
+              <div class="carousel-item">
+                <img src="images/screenshot1.png" alt="…" />
+              </div>
+              <div class="carousel-item">
+                <img src="images/screenshot2.png" alt="…" />
+              </div>
+              <div class="carousel-item">
+                <img src="images/screenshot3.png" alt="…" />
+              </div>
+            </div>
+          </div>
+          <button class="carousel-btn next">›</button>
+        </div>
+
+        <!-- description alongside it -->
+        <div class="description">
+          <h2>About the game</h2>
+          <p>
+            Parallax Paradox is a mind-bending adventure where museum exhibits
+            come alive—and perspective is the key to solving its puzzles.
+          </p>
+        </div>
+      </section>
+
+      <!-- download button -->
+      <section class="download">
+        <a href="game.zip" class="btn">Download Instructions</a>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Parallax Paradox</p>
+    </footer>
+    <script>
+      const track = document.querySelector(".carousel-track");
+      const nextBtn = document.querySelector(".carousel-btn.next");
+      const prevBtn = document.querySelector(".carousel-btn.prev");
+      const slides = Array.from(track.children);
+
+      // 1) clone first & last
+      const firstClone = slides[0].cloneNode(true);
+      const lastClone = slides[slides.length - 1].cloneNode(true);
+
+      track.appendChild(firstClone);
+      track.insertBefore(lastClone, slides[0]);
+
+      // 2) initial offset to the *real* first slide
+      const slideWidth = track.clientWidth;
+      track.scrollLeft = slideWidth;
+
+      // helper to toggle smooth vs instant
+      function setScrollBehavior(smooth) {
+        track.classList.toggle("no-anim", !smooth);
+      }
+
+      // 3) move next / prev
+      nextBtn.addEventListener("click", () => {
+        setScrollBehavior(true);
+        track.scrollBy({ left: slideWidth, behavior: "smooth" });
+      });
+
+      prevBtn.addEventListener("click", () => {
+        setScrollBehavior(true);
+        track.scrollBy({ left: -slideWidth, behavior: "smooth" });
+      });
+
+      // 4) on scroll end, detect clones and jump
+      let isThrottled = false;
+      track.addEventListener("scroll", () => {
+        if (isThrottled) return;
+        isThrottled = true;
+        setTimeout(() => {
+          const maxScroll = track.scrollWidth - slideWidth;
+
+          // landed on the *clone* of last (at the very left)?
+          if (track.scrollLeft <= 0) {
+            setScrollBehavior(false);
+            track.scrollLeft = maxScroll - slideWidth;
+          }
+          // landed on the *clone* of first (at the very right)?
+          else if (track.scrollLeft >= maxScroll) {
+            setScrollBehavior(false);
+            track.scrollLeft = slideWidth;
+          }
+
+          isThrottled = false;
+        }, 200); // wait for the smooth scroll to finish
+      });
+
+      // 5) auto-rotate every 4s
+      setInterval(() => nextBtn.click(), 4000);
+    </script>
+  </body>
+</html>
