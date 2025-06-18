@@ -14,7 +14,9 @@
   </head>
   <body>
     <header>
-      <a class="logo" href="index.html">Parallax Paradox</a>
+      <a class="logo" href="index.html"
+        ><img src="images/logo.png" alt="Parallax Paradox logo"
+      /></a>
       <nav>
         <ul>
           <li><a href="qa.html">Q&A</a></li>
@@ -80,64 +82,11 @@
     <footer>
       <p>© 2025 Parallax Paradox</p>
     </footer>
-    <script>
-      const track = document.querySelector(".carousel-track");
-      const nextBtn = document.querySelector(".carousel-btn.next");
-      const prevBtn = document.querySelector(".carousel-btn.prev");
-      const slides = Array.from(track.children);
 
-      // 1) clone first & last
-      const firstClone = slides[0].cloneNode(true);
-      const lastClone = slides[slides.length - 1].cloneNode(true);
-
-      track.appendChild(firstClone);
-      track.insertBefore(lastClone, slides[0]);
-
-      // 2) initial offset to the *real* first slide
-      const slideWidth = track.clientWidth;
-      track.scrollLeft = slideWidth;
-
-      // helper to toggle smooth vs instant
-      function setScrollBehavior(smooth) {
-        track.classList.toggle("no-anim", !smooth);
-      }
-
-      // 3) move next / prev
-      nextBtn.addEventListener("click", () => {
-        setScrollBehavior(true);
-        track.scrollBy({ left: slideWidth, behavior: "smooth" });
-      });
-
-      prevBtn.addEventListener("click", () => {
-        setScrollBehavior(true);
-        track.scrollBy({ left: -slideWidth, behavior: "smooth" });
-      });
-
-      // 4) on scroll end, detect clones and jump
-      let isThrottled = false;
-      track.addEventListener("scroll", () => {
-        if (isThrottled) return;
-        isThrottled = true;
-        setTimeout(() => {
-          const maxScroll = track.scrollWidth - slideWidth;
-
-          // landed on the *clone* of last (at the very left)?
-          if (track.scrollLeft <= 0) {
-            setScrollBehavior(false);
-            track.scrollLeft = maxScroll - slideWidth;
-          }
-          // landed on the *clone* of first (at the very right)?
-          else if (track.scrollLeft >= maxScroll) {
-            setScrollBehavior(false);
-            track.scrollLeft = slideWidth;
-          }
-
-          isThrottled = false;
-        }, 200); // wait for the smooth scroll to finish
-      });
-
-      // 5) auto-rotate every 4s
-      setInterval(() => nextBtn.click(), 4000);
-    </script>
+    <!-- Firebase SDKs (keep these inline or in their own files) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    <!-- your app logic -->
+    <script src="script.js"></script>
   </body>
 </html>

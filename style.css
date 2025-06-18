@@ -5,36 +5,44 @@
   }
   body {
     font-family: "IBM Plex Sans Condensed", sans-serif;
+    color: #45423c;
     line-height: 1.5;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
   header {
-    font-weight: 200;
+    font-weight: 300;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background: #222;
+    background: #dbdbd9;
   }
   header .logo {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
+    display: inline-block;
   }
+
+  /* size the image to fit your header */
+  header .logo img {
+    height: 60px;    /* pick whatever height works best */
+    width: auto;     /* preserves aspect ratio */
+    display: block;  /* removes any inline whitespace */
+  }
+
   header nav ul {
     list-style: none;
     display: flex;
     gap: 1rem;
   }
   header nav a {
-    color: #fff;
+    color: #45423c;
     text-decoration: none;
+    font-size: 18px;
   }
   main {
     font-weight: 400;
-    font-size: 18px;
+    font-size: 20px;
     flex: 1;
     padding: 2rem;
   }
@@ -90,12 +98,16 @@
     font-size: 1rem;
   }
   .signup button {
+    border: none;
+    border-radius: 4px;
+    background-color: #a6a89a;
     padding: 0.6rem;
     font-size: 1rem;
+    cursor: pointer;
   }
   .trailer video {
     width: 100%;
-    border: 2px solid #ccc;
+    border: 2px solid #bfa1a0;
   }
   
   /* — Carousel + Description wrapper */
@@ -117,18 +129,16 @@
   
   /* Prev/Next Buttons */
   .carousel-btn {
-    background: rgba(0, 0, 0, 0.5);
-    border: none;
-    color: #fff;
-    font-size: 1.8rem;
-    width: 2.2rem;
-    height: 2.2rem;
-    border-radius: 50%;
+    background: none;       /* no fill */
+    border: none;           /* no border */
+    box-shadow: none;       /* in case you had a shadow */
+    color: #45423c;            /* keeps the arrow white */
+    font-size: 1.8rem;      
+    padding: 0.5rem;        /* clickable area around the arrow */
     cursor: pointer;
-    transition: background 0.2s;
   }
   .carousel-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
+    color: #dbdbd9;
   }
   
   /* Carousel viewport */
@@ -179,8 +189,8 @@
   .download .btn {
     display: inline-block;
     padding: 0.8rem 1.2rem;
-    background: #007acc;
-    color: #fff;
+    background: #c3ebd7;
+    color: #45423c;
     text-decoration: none;
     border-radius: 4px;
   }
