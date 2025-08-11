@@ -225,7 +225,7 @@
   gap: 1.5rem;
   padding: 2rem 0;
 
-  max-width: 700px;     /* controls total grid width */
+  max-width: 750px;     /* controls total grid width */
   margin: 0 auto;       /* centers the grid */
 }
 
@@ -275,6 +275,15 @@
   .contact-info {
     text-align: center;
   }
+
+  .contact-info a {
+  color: #84bab8;
+  text-decoration: none; /* optional, removes underline */
+}
+
+.contact-info a:hover {
+  text-decoration: underline; /* optional, adds underline on hover */
+}
   .social-buttons {
     margin-top: 1rem;
     display: flex;
